@@ -71,6 +71,14 @@
     background: rgba(7,15,36,0.8);
     backdrop-filter: blur(12px);
     position: sticky; top: 0; z-index: 100;
+    flex-shrink: 0;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
   }
 
   .logo-group {
@@ -588,25 +596,22 @@
     background: rgba(26,46,90,0.7);
   }
 
-  /* ── RESET BTN ── */
+  /* ── RESET BTN — lives in header ── */
   .reset-btn {
-    position: fixed;
-    bottom: 28px; right: 32px;
-    padding: 10px 18px;
-    background: rgba(26,46,90,0.7);
-    border: 1px solid rgba(201,150,62,0.2);
+    padding: 5px 14px;
+    background: transparent;
+    border: 1px solid rgba(201,150,62,0.25);
     border-radius: 100px;
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     color: var(--slate);
     cursor: pointer;
     transition: all 0.2s;
-    backdrop-filter: blur(8px);
-    display: none;
+    white-space: nowrap;
   }
 
-  .reset-btn:hover { color: var(--gold-lt); border-color: rgba(201,150,62,0.4); }
+  .reset-btn:hover { color: var(--gold-lt); border-color: rgba(201,150,62,0.5); }
 
   /* ── WELCOME MESSAGE CARD ── */
   .welcome-card {
@@ -765,13 +770,16 @@
     .welcome-card .wc-body  { font-size: 13px; }
     .welcome-card .wc-icon  { width: 36px; height: 36px; font-size: 14px; }
 
-    /* Reset button — move so it doesn't clash with input */
+    /* Reset button — sits in header, just smaller on mobile */
     .reset-btn {
-      bottom: auto;
-      top: 70px;
-      right: 16px;
-      font-size: 11px;
-      padding: 7px 12px;
+      font-size: 10px;
+      padding: 4px 10px;
+    }
+
+    /* Header right group */
+    .header-right {
+      gap: 4px;
+      align-items: flex-end;
     }
 
     /* Hide setup screen decorative chips on small screens */
@@ -792,9 +800,12 @@
         <span class="sub">Durham University</span>
       </div>
     </div>
-    <div class="header-badge">
-      <div class="dot"></div>
-      AI Founder Advisor
+    <div class="header-right">
+      <div class="header-badge">
+        <div class="dot"></div>
+        AI Founder Advisor
+      </div>
+      <button class="reset-btn" id="resetBtn" onclick="resetAdvisor()" style="display:none">← Start over</button>
     </div>
   </header>
 
@@ -865,7 +876,7 @@
 
 </div>
 
-<button class="reset-btn" id="resetBtn" onclick="resetAdvisor()">← Start over</button>
+
 
 <script>
 // ─────────────────────────────────────────────────────────────────────────────
